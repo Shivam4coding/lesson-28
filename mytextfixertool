@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My Text Fixer Tool</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <style>
+        body {
+            background: lightyellow;
+        }
+
+        h1,
+        h3 {
+            color: darkorange;
+        }
+
+        .box {
+            background: white;
+            color: darkorange;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container py-4">
+        <h1 class="mb-1">My Text Fixer Tool</h1>
+        <p class="text-muted mb-4">
+            Count letters, change text style, find & replace words, and clean your text!
+        </p>
+
+        <div class="card mb-4">
+            <div class="card-body">
+                <h3 class="card-title">Count Characters</h3>
+                <input id="textCount" class="form-control mb-2" placeholder="Type something here...">
+                <button class="btn btn-warning" onclick="countChar()">
+                    Count Characters
+                </button>
+                <div id="countResult" class="box p-3 mt-3 rounded">
+                    Enter some text and count the characters!
+                </div>
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-body">
+
+                <h3 class="card-title">Change Text Style</h3>
+                <input id="caseText" class="form-control mb-2" placeholder="Type your text here">
+                <button class="btn btn-warning mr-2" onclick="upperText()">
+                    UPPERCASE
+                </button>
+                <button class="btn btn-warning" onclick="lowerText()">
+                    lowercase
+                </button>
+                <div id="caseResult" class="box p-3 mt-3 rounded">
+                    Your changed text will appear here.
+                </div>
+            </div>
+        </div>
+
+      
+        <div class="card mb-4">
+            <div class="card-body">
+
+                <h3 class="card-title">Find and Replace</h3>
+                <input id="mainText" class="form-control mb-2" placeholder="Type a sentence">
+                <input id="findWord" class="form-control mb-2" placeholder="Word to find">
+                <input id="replaceWord" class="form-control mb-2" placeholder="Replace with">
+                <button class="btn btn-warning mr-2" onclick="findWordFun()">
+                    Find
+                </button>
+
+                <button class="btn btn-warning" onclick="replaceWordFun()">
+                    Replace
+                </button>
+
+                <div id="findResult" class="box p-3 mt-3 rounded">
+                    Find or replace words here.
+                </div>
+            </div>
+        </div>
+
+     
+        <div class="card mb-4">
+            <div class="card-body">
+
+                <h3 class="card-title">Clean Text</h3>
+                <input id="cleanText" class="form-control mb-2" placeholder="Type text with spaces">
+
+                <button class="btn btn-warning mr-2" onclick="trimText()">
+                    Remove Spaces
+                </button>
+
+                <button class="btn btn-warning" onclick="splitText()">
+                    Split Words
+                </button>
+
+                <div id="cleanResult" class="box p-3 mt-3 rounded">
+                    Cleaned text will appear here.
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        function countChar() {
+            var txt = document.getElementById("textCount").value;
+            document.getElementById("countResult").innerHTML =
+                "Total Characters = " + txt.length;
+        }
+        function upperText() {
+            var txt = document.getElementById("caseText").value;
+            document.getElementById("caseResult").innerHTML =
+                txt.toUpperCase();
+
+        }
+        function lowerText() {
+            var txt = document.getElementById("caseText").value;
+            document.getElementById("caseResult").innerHTML =
+                txt.toLowerCase();
+
+        }
+
+        function findWordFun() {
+            var txt = document.getElementById("mainText").value;
+            var word = document.getElementById("findWord").value;
+            var pos = txt.search(word);
+
+            if (pos == -1) {
+
+                document.getElementById("findResult").innerHTML =
+                    "'" + word + "' not found!";
+
+            } else {
+
+                document.getElementById("findResult").innerHTML =
+                    "'" + word + "' found at position " + pos;
+            }
+        }
+        function replaceWordFun() {
+            var txt = document.getElementById("mainText").value;
+            var find = document.getElementById("findWord").value;
+            var rep = document.getElementById("replaceWord").value;
+            document.getElementById("findResult").innerHTML =
+                txt.replace(find, rep);
+        }
+        function trimText() {
+            var txt = document.getElementById("cleanText").value;
+            document.getElementById("cleanResult").innerHTML =
+                txt.trim();
+        }
+        function splitText() {
+            var txt = document.getElementById("cleanText").value;
+            document.getElementById("cleanResult").innerHTML =
+                txt.split(" | ");
+        }
+    </script>
+
+</body>
+
+</html>
